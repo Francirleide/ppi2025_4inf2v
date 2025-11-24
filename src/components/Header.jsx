@@ -4,21 +4,23 @@ import { Link } from "react-router";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { ThemeToggle } from "./ThemeToggle";
+import { SessionContext } from "../context/SessionContext";
 
 export function Header() {
-  const { cart, session } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
+  const { session } = useContext(SessionContext);
 
   return (
     <div className={styles.container}>
       <div>
-        <Link to="/" className={styles.link}>
-          <h1>TRJ Megastore</h1>
+    <Link to="/" className={styles.link}>
+           <h1>TRJ Megastore</h1>
         </Link>
         {session && (
           <Link to="/user" className={styles.welcomeMessage}>
             Welcome, {session.user.user_metadata.username} {session.user.user_metadata.admin && '(admin ❤)'}
           </Link>
-        )}
+          )}
       </div>
 
       <div className={styles.actions}>
@@ -58,6 +60,13 @@ export function Header() {
           </div>
         </Link>
       </div>
-    </div>
+       </div>
   );
 }
+
+
+
+
+
+
+      

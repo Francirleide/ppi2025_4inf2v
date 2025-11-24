@@ -5,36 +5,226 @@
   margin-top: 15rem;
   gap: 2rem;
   padding: 2rem;
+  background-color: var(--background);
+  min-height: 90vh;
+  color: #abcaec;
 }
 
-.container h1 {
-  font-size: 4rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
-
-.userInfo{
+.card {
+  width: 100%;
+  max-width: 60rem;
+  background: var(--gray-100);
+  border: 1px solid #ce8fa4;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 1rem 0.25rem rgba(0,0,0,0.2);
+  color: var(--text);
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1rem;
-  font-size: 2rem;
+  align-items: flex-start;
 }
 
-.button {
-  margin-top: 0.5rem;
-  padding: 1.5rem 3rem;
+.card h1 {
+  font-size: 3rem;
+  margin: 0;
+  color: var(--text);
+}
+
+.username {
+  margin: 0.25rem 0;
+  font-size: 1.8rem;
+  color: var(--primary);
+}
+
+.details p {
+  margin: 0.25rem 0;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.signoutButton {
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
   border: none;
   border-radius: 0.75rem;
-  background-color: var(--primary);
-  color: var(--gray-900);
-  font-size: 2rem;
-  font-weight: bolder;
-  transition: all 0.2s ease;
+  background-color: #9e429e;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 700;
   cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
-.button:hover {
-  background-color: var(--primary-dark);
-  color: var(--gray-100);
+.signoutButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background-color: #910991;
+}
+
+.estoque {
+  width: 100%;
+  max-width: 90rem;
+  margin-top: 2rem;
+  padding: 1rem 2rem 3rem 2rem;
+  color: var(--text);
+}
+
+.estoque h2 {
+  margin: 0 0 1rem 0;
+  font-size: 2.4rem;
+  color:var(--primary);
+  text-align: center;
+}
+
+.estoqueMain {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+  padding: 1rem;
+}
+
+.estoqueForm {
+  background-color: var(--gray-100);
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  color: #520655;
+  border: 1px solid #ffa5d2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.estoqueForm h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  color: var(--text);
+}
+
+.estoqueInput {
+  background-color: var(--text);
+  border: 1px solid #8d4f80;
+  color: #ffffff;
+  font-size: 2rem;
+  padding: 0.6rem;
+  border-radius: 6px;
+}
+
+.estoqueButton {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: 700;
+  transition: background-color 0.2s ease, transform 0.12s ease;
+  margin-top: 0.5rem;
+}
+
+.estoqueButton:hover {
+  background-color: #5a155a;
+  transform: translateY(-2px);
+}
+
+.estoqueProdutos {
+  background-color: var(--gray-200);
+  padding: 1.25rem;
+  border-radius: 10px;
+  width: 640px;
+  min-height: 240px;
+  font-size: 1.5rem;
+  color: #d4b2c5;
+  border: 1px solid #4f5d6d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.estoqueLista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.estoqueItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--gray-400);
+  border-radius: 8px;
+  margin-bottom: 0.85rem;
+  padding: 0.85rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.estoqueImg {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+}
+
+.estoqueInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.estoqueTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.estoquePrice {
+  font-size: 2rem;
+  color:var(--text);
+  font-weight: 700;
+}
+
+.estoqueDesc {
+  font-size: 1.5rem;
+  color: var(--text);
+  margin-top: 0.25rem;
+}
+
+.estoqueRemove {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: auto;
+  transition: background-color 0.2s ease, transform 0.12s ease;
+}
+
+.estoqueRemove:hover {
+  background-color: var(--secondary);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .card {
+    width: 90vw;
+    padding: 1.5rem;
+  }
+  .estoqueMain {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .estoqueForm, .estoqueProdutos {
+    width: 90vw;
+    min-width: 260px;
+  }
+  .estoque h2 {
+    text-align: center;
+  }
 }

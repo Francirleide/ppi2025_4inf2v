@@ -1,35 +1,130 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { supabase } from "../supabase"; // ajuste o caminho se necessário
+import { createContext, useState, useEffect } from "react";
+import { supabase } from "../utils/supabase";
 
-const SessionContext = createContext();
+export const SessionContext = createContext({
+  handleSignUp: () => {},
+  handleSignIn: () => {},
+  handleSignOut: () => {},
+  session: null,
+  sessionLoading: false,
+  sessionMessage: null,
+  sessionError: null,
+});
 
 export function SessionProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [sessionLoading, setSessionLoading] = useState(false);
+  const [sessionMessage, setSessionMessage] = useState(null);
+  const [sessionError, setSessionError] = useState(null);
+  const [session, setSession] = useState(null);
 
-  // Carregar sessão ao abrir o app
   useEffect(() => {
-    const getSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      setUser(data.session?.user || null);
-    };
+    async function getSession() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      setSession(session || null);
+    }
 
     getSession();
 
-    // Listener de login/logout
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null);
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      setSession(session || null);
     });
 
-    return () => listener.subscription.unsubscribe();
+    return () => subscription.unsubscribe();
   }, []);
 
+  async function handleSignUp(email, password, username) {
+    setSessionLoading(true);
+    setSessionError(null);
+    setSessionMessage(null);
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            username: username,
+            admin: false,
+          },
+          emailRedirectTo: `${window.location.origin}/signin`,
+        },
+      });
+      if (error) throw error;
+
+      if (data?.user) {
+        setSessionMessage(
+          "Registration successful! Check your email for confirmation."
+        );
+      }
+    } catch (error) {
+      setSessionError(error.message);
+    } finally {
+      setSessionLoading(false);
+    }
+  }
+
+  async function handleSignIn(email, password) {
+    console.log("HandleSignIn called");
+    setSessionLoading(true);
+    setSessionError(null);
+    setSessionMessage(null);
+    console.log("SetSessions");
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) {
+        console.log("Error 81");
+        throw error;
+      }
+
+      if (data.session) {
+        setSession(data.session);
+        setSessionMessage("Sign in Successful!");
+        console.log("SignIn successful");
+      }
+    } catch (error) {
+      console.log("Error", error.message);
+      setSessionError(error.message);
+    } finally {
+      console.log("SignIn process ended");
+      setSessionLoading(false);
+    }
+  }
+
+  async function handleSignOut() {
+    setSessionLoading(true);
+    setSessionError(null);
+    setSessionMessage(null);
+
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      setSession(null);
+      setSessionMessage("Sign out successful!");
+      window.location.href = "/";
+    } catch (error) {
+      setSessionError(error.message);
+    } finally {
+      setSessionLoading(false);
+    }
+  }
+  const context = {
+    handleSignUp: handleSignUp,
+    handleSignIn: handleSignIn,
+    handleSignOut: handleSignOut,
+    session: session,
+    sessionLoading: sessionLoading,
+    sessionMessage: sessionMessage,
+    sessionError: sessionError,
+  };
   return (
-    <SessionContext.Provider value={{ user }}>
+    <SessionContext.Provider value={context}>
       {children}
     </SessionContext.Provider>
   );
-}
-
-export function useSession() {
-  return useContext(SessionContext);
 }

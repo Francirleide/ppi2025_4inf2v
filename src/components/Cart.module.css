@@ -1,69 +1,96 @@
 .cart {
-  display: flex;
+  display: grid;
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  margin: 15rem 0;
+  justify-content: center;
   align-items: center;
+  background-color: var(--background);
+  min-height: 100vh;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-rows: repeat(auto-fit, min-content);
+  color: #265182;
+  grid-template-areas:
+    "title title"
+    "main checkout";
+  grid-template-columns: 70vw 25vw;
+  grid-template-rows: 20rem auto;
 }
-.cart h2 {
+
+.title {
+  font-size: 5rem;
+  font-weight: bold;
+  margin-bottom: 5rem;
+  grid-area: title;
+  text-align: center;
+  height: 10rem;
+  color: var(--primary);
+}
+
+.cart h3 {
   font-size: 3rem;
   font-weight: bold;
-  margin: 3rem;
+  color: var(--text);
+}
+
+.cart p {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.cart button {
+  background-color: #4A90E2;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 3rem;
+  transition: background-color 0.2s ease, transform 0.12s ease;
+}
+
+.cart button:hover {
+  background-color: #3a78bf;
+  transform: scale(1.05);
 }
 
 .cartItem {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  border: 1px solid #ccc;
-  padding: 2rem 5rem;
-  width: 100%;
-  gap: 1rem;
-}
-
-.cartItem img {
-  max-width: 100%;
-  height: 15rem;
-}
-
-.cartItem h3 {
-  font-size: 2rem;
-  margin: 0.5rem 0;
-  color: var(--gray-800);
-}
-
-.cartItem p {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-}
-
-.cartItem span {
-  font-weight: bold;
-  background-color: var(--primary-light);
-  padding: 0.6rem 1rem;
-}
-
-.cartItem button {
-  background-color: var(--primary-dark);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-.cartItem button:hover {
-  background-color: #0056b3;
-}
-
-.cartItem button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.quantity {
-  display: flex;
   align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--gray-100);
+  border: 1px solid #4A90E2;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  padding-right: 2rem;
+  color: var(--text);
+}
+
+.checkout {
+  grid-area: checkout;
+  align-self: start;
+  padding-left: 2rem;
+  color: #4A90E2;
+}
+
+.checkout h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4A90E2;
+}
+
+.cartList {
+  grid-area: main;
+  align-self: start;
+}
+
+.empty {
+  text-align: center;
+  grid-area: title;
+  margin-top: 30rem;
+  color: #4A90E2;
 }
