@@ -8,7 +8,7 @@ import { ProductList } from "./components/ProductList";
 import { Cart } from "./components/Cart";
 import { Route, Routes } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
-import { SessionProvider } from "./context/SessionContext"; // <-- ADICIONADO AQUI
+import { SessionProvider } from "./context/SessionContext"; 
 import { ToastContainer } from "react-toastify";
 import { Login } from "./components/Login";
 import { User } from "./components/User";
