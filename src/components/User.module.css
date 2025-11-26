@@ -7,7 +7,7 @@
   padding: 2rem;
   background-color: var(--background);
   min-height: 90vh;
-  color: #abcaec;
+  color: #2d565e;
 }
 
 .card {
@@ -48,8 +48,8 @@
   padding: 0.75rem 1.25rem;
   border: none;
   border-radius: 0.75rem;
-  background-color: #9e429e;
-  color: white;
+  background-color: #e979e9;
+  color: rgb(109, 44, 117);
   font-size: 1.6rem;
   font-weight: 700;
   cursor: pointer;
@@ -96,7 +96,7 @@
   font-size: 1.1rem;
   color: #520655;
   border: 1px solid #ffa5d2;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(7, 7, 7, 0.137);
 }
 
 .estoqueForm h3 {
@@ -108,7 +108,7 @@
 .estoqueInput {
   background-color: var(--text);
   border: 1px solid #8d4f80;
-  color: #ffffff;
+  color: #c5a7ae;
   font-size: 2rem;
   padding: 0.6rem;
   border-radius: 6px;
@@ -116,7 +116,7 @@
 
 .estoqueButton {
   background-color: var(--primary);
-  color: white;
+  color: rgb(231, 231, 231);
   padding: 0.7rem 1.2rem;
   border: none;
   border-radius: 6px;
@@ -128,7 +128,7 @@
 }
 
 .estoqueButton:hover {
-  background-color: #5a155a;
+  background-color: #af51af;
   transform: translateY(-2px);
 }
 
@@ -195,7 +195,7 @@
 
 .estoqueRemove {
   background-color: var(--primary);
-  color: white;
+  color: rgb(255, 255, 255);
   border: none;
   border-radius: 6px;
   padding: 0.45rem 0.8rem;
